@@ -40,5 +40,10 @@ namespace OneM.DamageSystem
         /// </summary>
         /// <param name="damager"><inheritdoc cref="TryTakeDamage(IDamager)" path="/param[@name='damager']"/></param>
         void TakeDamage(IDamager damager);
+
+        /// <summary>
+        /// Respawns this object reseting it.
+        /// </summary>
+        void Respawn();
     }
 }
