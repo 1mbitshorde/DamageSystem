@@ -18,12 +18,6 @@ namespace OneM.DamageSystem
         public float Current { get; set; }
 
         /// <summary>
-        /// Checks whether can inflict damage into nearby damagable instances.
-        /// </summary>
-        /// <returns>True when inflict damage. False otherwise.</returns>
-        bool TryInflictDamage();
-
-        /// <summary>
         /// Checks whether can inflict damage into the given damagable instance.
         /// </summary>
         /// <param name="damageable">The damageable instance to inflict damage.</param>

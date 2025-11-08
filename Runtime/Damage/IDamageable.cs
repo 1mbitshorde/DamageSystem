@@ -30,9 +30,9 @@ namespace OneM.DamageSystem
         /// <returns>Whether damage was taken.</returns>
         bool TryTakeDamage(IDamager damager)
         {
-            var canInflictDamage = IsAbleToTakeDamage();
-            if (canInflictDamage) TakeDamage(damager);
-            return canInflictDamage;
+            var canTakeDamage = IsAbleToTakeDamage();
+            if (canTakeDamage) TakeDamage(damager);
+            return canTakeDamage;
         }
 
         /// <summary>
