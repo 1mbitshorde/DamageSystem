@@ -1,8 +1,12 @@
-# [PackageName]
+# Damage System
 
-[...]
+Almost all games have a way for objects to inflict damage into other ones and recover from them using some item. The damage is usually shown by some UI and/or some effect during gameplay. Also, it's a common practice to have a time window between each damage hit so one cannot inflict too much damage in a small succession window.
+
+This package adds Damage System scripts which has all those features.
 
 ## How To Use
+
+There are 3 main components on this system: Damager, Damageable and Energy.
 
 ### Using [...]
 
