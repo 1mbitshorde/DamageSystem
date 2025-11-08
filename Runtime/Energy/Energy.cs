@@ -96,6 +96,7 @@ namespace OneM.DamageSystem
         /// <summary>
         /// Completes the current energy to <see cref="Initial"/>.
         /// </summary>
+        [ContextMenu("Complete")]
         public void CompleteToInitial() => Current = Initial;
 
         /// <summary>
