@@ -8,7 +8,14 @@ This package adds Damage System scripts which has all those features.
 
 There are 3 main components on this system: Damager, Damageable and Energy.
 
+The Damager component can damage Damageable components, reducing the current value from Energy. A Damageable GameObject may have an Energy component and this can be shown in the UI by using an EnergyBar component. 
+
+You may have an Enemy GameObject with a Damager, Damageable and Energy components, so it can damage the Player and be damaged by the Players attacks. Also, you can show the Enemy energy using a EnergyBar (in a Screen or World Space Canvas).
+
+Furthermore, events are available so other scripts can easily get notified when some actions are executed, like when the energy ends, increases etc.
+
 ### Using [...]
+
 
 ## Installation
 
