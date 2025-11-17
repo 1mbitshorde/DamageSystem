@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.2.0] - 2025-11-17
 ### Changed
 - Make damageCollider a public field
 
@@ -23,5 +24,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - gitignore
 - Initial commit
 
-[Unreleased]: https://github.com/1mbitshorde/DamageSystem/compare/0.1.0...main
+[Unreleased]: https://github.com/1mbitshorde/DamageSystem/compare/0.2.0...main
+[0.2.0]: https://github.com/1mbitshorde/DamageSystem/tree/0.2.0/
 [0.1.0]: https://github.com/1mbitshorde/DamageSystem/tree/0.1.0/

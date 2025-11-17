@@ -1,14 +1,13 @@
 {
   "name": "com.1mbitshorde.damage-system",
   "displayName": "1M Bits Horde-Damage System",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "unity": "6000.1",
   "description": "Damage System scripts used for gameplay.",
   "keywords": [
     "Damageable",
     "Damager"
   ],
-  "dependencies": {},
   "homepage": "https://github.com/1mbitshorde/DamageSystem#readme",
   "repository": {
     "type": "git",
