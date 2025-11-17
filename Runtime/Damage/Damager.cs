@@ -9,8 +9,8 @@ namespace OneM.DamageSystem
     [DisallowMultipleComponent]
     public sealed class Damager : MonoBehaviour, IDamager
     {
-        [SerializeField, Tooltip("The local collider component used to check collisions.")]
-        private Collider damageCollider;
+        [Tooltip("The local collider component used to check collisions.")]
+        public Collider damageCollider;
         [SerializeField, Min(0F), Tooltip("The current damage to inflict.")]
         private float current = 1F;
         [Tooltip("The layers to inflict damage.")]
