@@ -31,6 +31,10 @@ namespace OneM.DamageSystem
         private void Reset() => damageCollider = GetComponent<Collider>();
         private void FixedUpdate() => TryInflictNearbyDamage();
 
+        public void Enable() => SetEnable(true);
+        public void Disable() => SetEnable(false);
+        public void SetEnable(bool isEnabled) => gameObject.SetActive(isEnabled);
+
         public bool TryInflictDamage(IDamageable damageable)
         {
             var wasDamageInflicted = damageable.TryTakeDamage(this);
