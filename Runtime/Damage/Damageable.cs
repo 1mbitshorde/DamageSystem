@@ -7,21 +7,21 @@ namespace OneM.DamageSystem
     /// Default damageable implementation. It can be damaged by an <see cref="IDamager"/> implementation.
     /// </summary>
     /// <remarks>
-    /// It will use the <see cref="energy"/> component when taking damage.
+    /// It will use the <see cref="Energy"/> component when taking damage.
     /// If none is set, damages will be taken without removing any energy.
     /// </remarks>
     [DisallowMultipleComponent]
     public sealed class Damageable : MonoBehaviour, IDamageable
     {
         [Tooltip("The Energy component to inflict damage.")]
-        public Energy energy;
+        public Energy Energy;
 
         [field: SerializeField, Tooltip("Whether is invulnerable to damages.")]
         public bool IsInvulnerable { get; set; }
 
         public event Action OnDamageTaken;
 
-        private void Reset() => energy = GetComponentInChildren<Energy>();
+        private void Reset() => Energy = GetComponentInChildren<Energy>();
         private void Start() { /* To show the component Toggle in the Inspector*/ }
 
         public bool IsDestroyed() => !enabled;
@@ -30,17 +30,17 @@ namespace OneM.DamageSystem
         public void Respawn()
         {
             enabled = true;
-            energy.CompleteToInitial();
+            Energy.CompleteToInitial();
         }
 
         public void TakeDamage(IDamager damager)
         {
-            if (energy)
+            if (Energy)
             {
-                var damage = damager.Current;
-                energy.Remove(damage);
+                var damage = damager.CurrentAmount;
+                Energy.Remove(damage);
 
-                if (energy.IsEmpty())
+                if (Energy.IsEmpty())
                 {
                     enabled = false;
                     return;

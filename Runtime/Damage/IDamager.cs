@@ -15,7 +15,7 @@ namespace OneM.DamageSystem
         /// <summary>
         /// The current damage amount to inflict.
         /// </summary>
-        public float Current { get; set; }
+        public float CurrentAmount { get; set; }
 
         /// <summary>
         /// Checks whether can inflict damage into the given damagable instance.

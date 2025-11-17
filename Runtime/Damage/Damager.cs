@@ -10,25 +10,25 @@ namespace OneM.DamageSystem
     public sealed class Damager : MonoBehaviour, IDamager
     {
         [Tooltip("The local collider component used to check collisions.")]
-        public Collider damageCollider;
-        [SerializeField, Min(0F), Tooltip("The current damage to inflict.")]
-        private float current = 1F;
+        public Collider DamageCollider;
+        [SerializeField, Min(0F), Tooltip("The current damage amount to inflict.")]
+        private float currentAmount = 1F;
         [Tooltip("The layers to inflict damage.")]
-        public LayerMask layers;
+        public LayerMask Layers;
         [Tooltip("Whether to disable this component after damage is inflicted.")]
-        public bool disableAfterInflictDamage = true;
+        public bool DisableAfterInflictDamage;
 
         public event Action OnDamageInflicted;
 
-        public float Current
+        public float CurrentAmount
         {
-            get => current;
-            set => current = Mathf.Max(value, 0f);
+            get => currentAmount;
+            set => currentAmount = Mathf.Max(value, 0f);
         }
 
         private readonly Collider[] buffer = new Collider[10];
 
-        private void Reset() => damageCollider = GetComponent<Collider>();
+        private void Reset() => DamageCollider = GetComponent<Collider>();
         private void FixedUpdate() => TryInflictNearbyDamage();
 
         public void Enable() => SetEnable(true);
@@ -41,20 +41,20 @@ namespace OneM.DamageSystem
             if (wasDamageInflicted)
             {
                 OnDamageInflicted?.Invoke();
-                if (disableAfterInflictDamage) enabled = false;
+                if (DisableAfterInflictDamage) enabled = false;
             }
             return wasDamageInflicted;
         }
 
         private void TryInflictNearbyDamage()
         {
-            var bounds = damageCollider.bounds;
+            var bounds = DamageCollider.bounds;
             var hits = Physics.OverlapBoxNonAlloc(
                 bounds.center,
                 bounds.size * 0.5F,
                 buffer,
                 transform.rotation,
-                layers
+                Layers
             );
 
             for (var i = 0; i < hits; i++)
