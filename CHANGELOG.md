@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- DamageableFallback component
+
 ## [0.2.0] - 2025-11-17
 ### Changed
 - Make damageCollider a public field
