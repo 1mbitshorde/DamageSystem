@@ -9,6 +9,7 @@ namespace OneM.DamageSystem
     public interface IDamager
     {
         public Transform transform { get; }
+        public Collider Collider { get; set; }
 
         /// <summary>
         /// Event fired just after inflict damage to the given damageable instance.

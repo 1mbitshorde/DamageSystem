@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace OneM.DamageSystem
 {
@@ -8,14 +9,24 @@ namespace OneM.DamageSystem
     public interface IDamageable
     {
         /// <summary>
-        /// Event fired just after receive damage by the given damager.
-        /// </summary>
-        event Action<IDamager> OnDamageTaken;
-
-        /// <summary>
         /// Whether this instance is invulnerable to damage.
         /// </summary>
         bool IsInvulnerable { get; set; }
+
+        /// <summary>
+        /// The collider component used to check collisions.
+        /// </summary>
+        Collider Collider { get; set; }
+
+        /// <summary>
+        /// The Energy component to inflict damage.
+        /// </summary>
+        Energy Energy { get; set; }
+
+        /// <summary>
+        /// Event fired just after receive damage by the given damager.
+        /// </summary>
+        event Action<IDamager> OnDamageTaken;
 
         /// <summary>
         /// Whether is able to take damage.

@@ -13,8 +13,10 @@ namespace OneM.DamageSystem
     [DisallowMultipleComponent]
     public sealed class Damageable : MonoBehaviour, IDamageable
     {
-        [Tooltip("The Energy component to inflict damage.")]
-        public Energy Energy;
+        [field: SerializeField, Tooltip("The Energy component to inflict damage.")]
+        public Energy Energy { get; set; }
+        [field: SerializeField, Tooltip("The collider component used to check collisions.")]
+        public Collider Collider { get; set; }
 
         [field: SerializeField, Tooltip("Whether is invulnerable to damages.")]
         public bool IsInvulnerable { get; set; }

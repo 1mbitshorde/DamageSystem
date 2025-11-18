@@ -9,8 +9,8 @@ namespace OneM.DamageSystem
     [DisallowMultipleComponent]
     public sealed class Damager : MonoBehaviour, IDamager
     {
-        [Tooltip("The local collider component used to check collisions.")]
-        public Collider DamageCollider;
+        [field: SerializeField, Tooltip("The local collider component used to check collisions.")]
+        public Collider Collider { get; set; }
         [SerializeField, Min(0F), Tooltip("The current damage amount to inflict.")]
         private float currentAmount = 1F;
         [Tooltip("The layers to inflict damage.")]
@@ -28,7 +28,7 @@ namespace OneM.DamageSystem
 
         private readonly Collider[] buffer = new Collider[10];
 
-        private void Reset() => DamageCollider = GetComponent<Collider>();
+        private void Reset() => Collider = GetComponent<Collider>();
         private void FixedUpdate() => TryInflictNearbyDamage();
 
         public void Enable() => SetEnable(true);
@@ -48,7 +48,7 @@ namespace OneM.DamageSystem
 
         private void TryInflictNearbyDamage()
         {
-            var bounds = DamageCollider.bounds;
+            var bounds = Collider.bounds;
             var hits = Physics.OverlapBoxNonAlloc(
                 bounds.center,
                 bounds.size * 0.5F,
