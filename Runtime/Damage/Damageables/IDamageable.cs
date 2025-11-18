@@ -8,9 +8,9 @@ namespace OneM.DamageSystem
     public interface IDamageable
     {
         /// <summary>
-        /// Event fired just after receive damage.
+        /// Event fired just after receive damage by the given damager.
         /// </summary>
-        event Action OnDamageTaken;
+        event Action<IDamager> OnDamageTaken;
 
         /// <summary>
         /// Whether this instance is invulnerable to damage.

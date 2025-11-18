@@ -19,7 +19,7 @@ namespace OneM.DamageSystem
         [field: SerializeField, Tooltip("Whether is invulnerable to damages.")]
         public bool IsInvulnerable { get; set; }
 
-        public event Action OnDamageTaken;
+        public event Action<IDamager> OnDamageTaken;
 
         private void Reset() => Energy = GetComponentInChildren<Energy>();
         private void Start() { /* To show the component Toggle in the Inspector*/ }
@@ -47,7 +47,7 @@ namespace OneM.DamageSystem
                 }
             }
 
-            OnDamageTaken?.Invoke();
+            OnDamageTaken?.Invoke(damager);
         }
     }
 }

@@ -53,7 +53,7 @@ namespace OneM.DamageSystem
 
         private void SubscribeEvents() => damageable.OnDamageTaken += HandleDamageTaken;
         private void UnsubscribeEvents() => damageable.OnDamageTaken -= HandleDamageTaken;
-        private void HandleDamageTaken() => PlayDamageAnimation();
+        private void HandleDamageTaken(IDamager _) => PlayDamageAnimation();
 
         private Color[] GetColors() => renderers.Select(renderer => renderer.material.color).ToArray();
 
