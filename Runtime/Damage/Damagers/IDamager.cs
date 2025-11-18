@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace OneM.DamageSystem
 {
@@ -7,6 +8,8 @@ namespace OneM.DamageSystem
     /// </summary>
     public interface IDamager
     {
+        public Transform transform { get; }
+
         /// <summary>
         /// Event fired just after inflict damage.
         /// </summary>
