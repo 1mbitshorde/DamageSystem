@@ -18,7 +18,7 @@ namespace OneM.DamageSystem
         [Tooltip("Whether to disable this component after damage is inflicted.")]
         public bool DisableAfterInflictDamage;
 
-        public event Action OnDamageInflicted;
+        public event Action<IDamageable> OnDamageInflicted;
 
         public float CurrentAmount
         {
@@ -40,7 +40,7 @@ namespace OneM.DamageSystem
             var wasDamageInflicted = damageable.TryTakeDamage(this);
             if (wasDamageInflicted)
             {
-                OnDamageInflicted?.Invoke();
+                OnDamageInflicted?.Invoke(damageable);
                 if (DisableAfterInflictDamage) enabled = false;
             }
             return wasDamageInflicted;

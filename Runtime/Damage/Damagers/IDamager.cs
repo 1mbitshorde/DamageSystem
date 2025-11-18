@@ -11,9 +11,9 @@ namespace OneM.DamageSystem
         public Transform transform { get; }
 
         /// <summary>
-        /// Event fired just after inflict damage.
+        /// Event fired just after inflict damage to the given damageable instance.
         /// </summary>
-        event Action OnDamageInflicted;
+        event Action<IDamageable> OnDamageInflicted;
 
         /// <summary>
         /// The current damage amount to inflict.
