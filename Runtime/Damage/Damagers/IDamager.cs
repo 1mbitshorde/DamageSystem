@@ -25,7 +25,7 @@ namespace OneM.DamageSystem
         /// Checks whether can inflict damage into the given damagable instance.
         /// </summary>
         /// <param name="damageable">The damageable instance to inflict damage.</param>
-        /// <returns><inheritdoc cref="TryInflictDamage()"/></returns>
+        /// <returns>Whether a damage was inflicted.</returns>
         bool TryInflictDamage(IDamageable damageable);
     }
 }
