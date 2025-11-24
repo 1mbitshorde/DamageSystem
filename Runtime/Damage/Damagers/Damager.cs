@@ -15,7 +15,7 @@ namespace OneM.DamageSystem
         private float currentAmount = 1F;
         [Tooltip("The layers to inflict damage.")]
         public LayerMask Layers;
-        [Tooltip("Whether to disable this component after damage is inflicted.")]
+        [Tooltip("Whether to disable this GameObject after damage is inflicted.")]
         public bool DisableAfterInflictDamage;
 
         public event Action<IDamageable> OnDamageInflicted;
@@ -41,7 +41,7 @@ namespace OneM.DamageSystem
             if (wasDamageInflicted)
             {
                 OnDamageInflicted?.Invoke(damageable);
-                if (DisableAfterInflictDamage) enabled = false;
+                if (DisableAfterInflictDamage) gameObject.SetActive(false);
             }
             return wasDamageInflicted;
         }
