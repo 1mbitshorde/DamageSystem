@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.4.0] - 2025-11-24
 ### Added
 - RayDamager class
 
@@ -31,7 +33,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - gitignore
 - Initial commit
 
-[Unreleased]: https://github.com/1mbitshorde/DamageSystem/compare/0.3.0...main
+[Unreleased]: https://github.com/1mbitshorde/DamageSystem/compare/0.4.0...main
+[0.4.0]: https://github.com/1mbitshorde/DamageSystem/tree/0.4.0/
 [0.3.0]: https://github.com/1mbitshorde/DamageSystem/tree/0.3.0/
 [0.2.0]: https://github.com/1mbitshorde/DamageSystem/tree/0.2.0/
 [0.1.0]: https://github.com/1mbitshorde/DamageSystem/tree/0.1.0/
