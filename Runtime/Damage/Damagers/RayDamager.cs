@@ -25,15 +25,16 @@ namespace OneM.DamageSystem
         /// </summary>
         /// <param name="origin">The raycast origin.</param>
         /// <param name="direction">The raycast direction.</param>
+        /// <param name="hit">The hit info.</param>
         /// <param name="distance">The raycast max distance.</param>
         /// <param name="collision">The raycast collision layer.</param>
         /// <returns><inheritdoc cref="TryInflictDamage(IDamageable)"/></returns>
-        public bool TryHit(Vector3 origin, Vector3 direction, float distance, LayerMask collision)
+        public bool TryHit(Vector3 origin, Vector3 direction, out RaycastHit hit, float distance, LayerMask collision)
         {
             var hasHit = Physics.Raycast(
                 origin,
                 direction,
-                out RaycastHit hit,
+                out hit,
                 distance,
                 collision
             );
