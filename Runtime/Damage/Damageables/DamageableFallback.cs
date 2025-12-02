@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections;
 
@@ -15,6 +16,9 @@ namespace OneM.DamageSystem
         public float FallbackDistance = 1f;
         [Min(0f), Tooltip("The time (in seconds) to move away.")]
         public float FallbackTime = 0.5f;
+
+        public event Action OnMoveStarted;
+        public event Action OnMoveFinished;
 
         public bool IsMoving { get; private set; }
 
@@ -44,6 +48,7 @@ namespace OneM.DamageSystem
             var initialPosition = transform.position;
 
             IsMoving = true;
+            OnMoveStarted?.Invoke();
 
             while (currentTime < FallbackTime)
             {
@@ -54,8 +59,10 @@ namespace OneM.DamageSystem
                 yield return null;
             }
 
-            IsMoving = false;
             transform.position = finalPosition;
+
+            IsMoving = false;
+            OnMoveFinished?.Invoke();
         }
     }
 }
