@@ -16,6 +16,8 @@ namespace OneM.DamageSystem
         [Min(0f), Tooltip("The time (in seconds) to move away.")]
         public float FallbackTime = 0.5f;
 
+        public bool IsMoving { get; private set; }
+
         private void OnEnable() => SubscribeEvents();
         private void OnDisable() => UnsubscribeEvents();
 
@@ -41,6 +43,8 @@ namespace OneM.DamageSystem
             var currentTime = 0F;
             var initialPosition = transform.position;
 
+            IsMoving = true;
+
             while (currentTime < FallbackTime)
             {
                 var step = currentTime / FallbackTime;
@@ -50,6 +54,7 @@ namespace OneM.DamageSystem
                 yield return null;
             }
 
+            IsMoving = false;
             transform.position = finalPosition;
         }
     }
