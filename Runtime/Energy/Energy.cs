@@ -11,8 +11,6 @@ namespace OneM.DamageSystem
     {
         [SerializeField, Tooltip("The initial energy.")]
         private float initial = 10f;
-        [SerializeField, Tooltip("The minimum energy allowed.")]
-        private float min = 0f;
         [SerializeField, Tooltip("The maximum energy allowed.")]
         private float max = 10f;
 
@@ -33,32 +31,21 @@ namespace OneM.DamageSystem
 
         /// <summary>
         /// The initial energy.
-        /// It'll be clamped between <see cref="Min"/> and <see cref="Max"/>.
+        /// It'll be clamped between 0f and <see cref="Max"/>.
         /// </summary>
         public float Initial
         {
             get => initial;
-            set => initial = Mathf.Clamp(value, Min, Max);
-        }
-
-        /// <summary>
-        /// The minimum energy allowed.
-        /// It cannot be greater than <see cref="Max"/>.
-        /// </summary>
-        public float Min
-        {
-            get => min;
-            set => min = Mathf.Min(value, Max);
+            set => initial = Mathf.Clamp(value, 0f, Max);
         }
 
         /// <summary>
         /// The maximum energy allowed.
-        /// It cannot be lower than <see cref="Min"/>.
         /// </summary>
         public float Max
         {
             get => max;
-            set => max = Mathf.Max(value, Min);
+            set => max = Mathf.Max(value, 0f);
         }
 
         /// <summary>
@@ -72,7 +59,7 @@ namespace OneM.DamageSystem
                 current = value;
                 if (IsEmpty())
                 {
-                    current = Min;
+                    current = 0f;
                     OnEnergyEnded?.Invoke();
                 }
                 else if (IsFull())
@@ -91,7 +78,7 @@ namespace OneM.DamageSystem
         private void OnValidate() => ValidateFields();
 
         public bool IsFull() => Current > Max || Mathf.Approximately(Current, Max);
-        public bool IsEmpty() => Current < Min || Mathf.Approximately(Current, Min);
+        public bool IsEmpty() => Current < 0f || Mathf.Approximately(Current, 0f);
 
         /// <summary>
         /// Completes the current energy to <see cref="Initial"/>.
@@ -124,7 +111,6 @@ namespace OneM.DamageSystem
         private void ValidateFields()
         {
             Max = max;
-            Min = min;
             Initial = initial;
         }
     }
