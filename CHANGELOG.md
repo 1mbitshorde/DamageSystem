@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Attributes package dependency
 
+### Changed
+- Show current energy as runtime field
+
 ## [0.5.0] - 2025-12-02
 ### Added
 - DamageableFallback OnMove Started/Finished events

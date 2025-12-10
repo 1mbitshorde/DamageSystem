@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using ActionCode.Attributes;
 
 namespace OneM.DamageSystem
 {
@@ -13,6 +14,10 @@ namespace OneM.DamageSystem
         private float initial = 10f;
         [SerializeField, Tooltip("The maximum energy allowed.")]
         private float max = 10f;
+
+        [Header("RUNTIME")]
+        [SerializeField, Tooltip("The current energy."), Readonly]
+        private float current;
 
         /// <summary>
         /// Event fired when energy has ended.
@@ -71,8 +76,6 @@ namespace OneM.DamageSystem
                 OnEnergyChanged?.Invoke();
             }
         }
-
-        private float current;
 
         private void Start() => CompleteToInitial();
         private void OnValidate() => ValidateFields();
