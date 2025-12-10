@@ -14,5 +14,8 @@
     "url": "https://github.com/1mbitshorde/DamageSystem.git"
   },
   "documentationUrl": "https://github.com/1mbitshorde/DamageSystem#readme",
-  "changelogUrl": "https://github.com/1mbitshorde/DamageSystem/CHANGELOG.md"
+  "changelogUrl": "https://github.com/1mbitshorde/DamageSystem/CHANGELOG.md",
+  "dependencies": {
+    "com.actioncode.attributes": "3.2.0"
+  }
 }
