@@ -14,9 +14,9 @@ namespace OneM.DamageSystem
         [Tooltip("The color to update when taking damage.")]
         public Color color = Color.red * 0.5F;
         [Tooltip("The animation total frames.")]
-        public uint totalFrames = 60;
+        public uint totalFrames = 4;
         [Tooltip("The time in seconds between the animation frames.")]
-        public float framesTime = 0.2f;
+        public float framesTime = 0.1f;
 
         [Space]
         [SerializeField, Tooltip("Renderers to update using the damage color.")]
@@ -27,6 +27,7 @@ namespace OneM.DamageSystem
         private void OnDisable() => UnsubscribeEvents();
 
         public bool IsPlaying() => !damageable.IsInvulnerable;
+        public void UpdateRenderers() => renderers = GetComponentsInChildren<Renderer>();
 
         public async void PlayDamageAnimation()
         {
@@ -48,7 +49,7 @@ namespace OneM.DamageSystem
         private void FindComponents()
         {
             damageable = GetComponentInParent<Damageable>();
-            renderers = GetComponentsInChildren<Renderer>();
+            UpdateRenderers();
         }
 
         private void SubscribeEvents() => damageable.OnDamageTaken += HandleDamageTaken;
