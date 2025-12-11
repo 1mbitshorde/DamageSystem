@@ -12,28 +12,33 @@ namespace OneM.DamageSystem
     {
         [SerializeField, Tooltip("The local Damageable component.")]
         private Damageable damageable;
+        [SerializeField, Tooltip("The transform to move when fallback.")]
+        private Transform moveTransform;
+
+        [Header("FALLBACK")]
         [Min(0f), Tooltip("The distance to move away.")]
-        public float FallbackDistance = 1f;
+        public float FallbackDistance = 0.4f;
         [Min(0f), Tooltip("The time (in seconds) to move away.")]
-        public float FallbackTime = 0.5f;
+        public float FallbackTime = 0.1f;
 
         public event Action OnMoveStarted;
         public event Action OnMoveFinished;
 
         public bool IsMoving { get; private set; }
 
+        private void Reset() => FindComponents();
         private void OnEnable() => SubscribeEvents();
         private void OnDisable() => UnsubscribeEvents();
 
         public void PlayFallbackAnimation(Transform damager)
         {
             var position = damager.position;
-            position.y = transform.position.y;
+            position.y = moveTransform.position.y;
 
-            var direction = (transform.position - position).normalized;
-            var finalPosition = transform.position + direction * FallbackDistance;
+            var direction = (moveTransform.position - position).normalized;
+            var finalPosition = moveTransform.position + direction * FallbackDistance;
 
-            transform.LookAt(position);
+            moveTransform.LookAt(position);
             StopAllCoroutines();
             StartCoroutine(FallbackMoveRoutine(finalPosition));
         }
@@ -42,10 +47,16 @@ namespace OneM.DamageSystem
         private void UnsubscribeEvents() => damageable.OnDamageTaken -= HandleDamageTaken;
         private void HandleDamageTaken(IDamager damager) => PlayFallbackAnimation(damager.transform);
 
+        private void FindComponents()
+        {
+            damageable = GetComponentInParent<Damageable>();
+            moveTransform = damageable.transform;
+        }
+
         private IEnumerator FallbackMoveRoutine(Vector3 finalPosition)
         {
             var currentTime = 0F;
-            var initialPosition = transform.position;
+            var initialPosition = moveTransform.position;
 
             IsMoving = true;
             OnMoveStarted?.Invoke();
@@ -53,13 +64,13 @@ namespace OneM.DamageSystem
             while (currentTime < FallbackTime)
             {
                 var step = currentTime / FallbackTime;
-                transform.position = Vector3.Lerp(initialPosition, finalPosition, step);
+                moveTransform.position = Vector3.Lerp(initialPosition, finalPosition, step);
 
                 currentTime += Time.deltaTime;
                 yield return null;
             }
 
-            transform.position = finalPosition;
+            moveTransform.position = finalPosition;
 
             IsMoving = false;
             OnMoveFinished?.Invoke();
