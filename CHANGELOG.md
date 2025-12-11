@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.6.1] - 2025-12-11
+### Fixed
+- Improve Damageable fallback/feedback components
+
 ## [0.6.0] - 2025-12-10
 ### Added
 - Attributes package dependency
@@ -45,8 +49,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - gitignore
 - Initial commit
 
-[Unreleased]: https://github.com/1mbitshorde/DamageSystem/compare/0.6.0...main
-[0.6.0]: https://github.com/1mbitshorde/DamageSystem/tree/0.5.0/
+[Unreleased]: https://github.com/1mbitshorde/DamageSystem/compare/0.6.1...main
+[0.6.1]: https://github.com/1mbitshorde/DamageSystem/tree/0.6.1/
+[0.6.0]: https://github.com/1mbitshorde/DamageSystem/tree/0.6.0/
 [0.5.0]: https://github.com/1mbitshorde/DamageSystem/tree/0.5.0/
 [0.4.0]: https://github.com/1mbitshorde/DamageSystem/tree/0.4.0/
 [0.3.0]: https://github.com/1mbitshorde/DamageSystem/tree/0.3.0/
