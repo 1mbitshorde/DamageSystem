@@ -18,11 +18,10 @@ namespace OneM.DamageSystem
         [Tooltip("The time in seconds between the animation frames.")]
         public float framesTime = 0.1f;
 
-        [Space]
-        [SerializeField, Tooltip("Renderers to update using the damage color.")]
         private Renderer[] renderers;
 
-        private void Reset() => FindComponents();
+        private void Reset() => damageable = GetComponentInParent<Damageable>();
+        private void Awake() => UpdateRenderers();
         private void OnEnable() => SubscribeEvents();
         private void OnDisable() => UnsubscribeEvents();
 
@@ -44,12 +43,6 @@ namespace OneM.DamageSystem
             }
 
             damageable.IsInvulnerable = false;
-        }
-
-        private void FindComponents()
-        {
-            damageable = GetComponentInParent<Damageable>();
-            UpdateRenderers();
         }
 
         private void SubscribeEvents() => damageable.OnDamageTaken += HandleDamageTaken;
