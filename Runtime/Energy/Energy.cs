@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-using ActionCode.Attributes;
+using OneM.Attributes;
 
 namespace OneM.DamageSystem
 {
