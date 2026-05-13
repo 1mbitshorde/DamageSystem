@@ -77,17 +77,29 @@ namespace OneM.DamageSystem
             }
         }
 
-        private void Start() => CompleteToInitial();
+        private void Start() => FillEnergy();
         private void OnValidate() => ValidateFields();
 
         public bool IsFull() => Current > Max || Mathf.Approximately(Current, Max);
         public bool IsEmpty() => Current < 0f || Mathf.Approximately(Current, 0f);
 
         /// <summary>
-        /// Completes the current energy to <see cref="Initial"/>.
+        /// Fill the current energy to <see cref="Initial"/>.
         /// </summary>
-        [ContextMenu("Complete")]
-        public void CompleteToInitial() => Current = Initial;
+        [ContextMenu("Fill Energy")]
+        public void FillEnergy() => Current = Initial;
+
+        /// <summary>
+        /// Fill the current energy to half of <see cref="Initial"/>.
+        /// </summary>
+        [ContextMenu("Fill Energy By Half")]
+        public void FillEnergyByHalf() => Current = Initial * 0.5f;
+
+        /// <summary>
+        /// Resets the current energy to zero.
+        /// </summary>
+        [ContextMenu("Reset Energy")]
+        public void ResetEnergy() => Current = 0;
 
         /// <summary>
         /// Adds the given amount into the current energy.

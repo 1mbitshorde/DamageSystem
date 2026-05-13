@@ -32,7 +32,7 @@ namespace OneM.DamageSystem
         public void Respawn()
         {
             enabled = true;
-            Energy.CompleteToInitial();
+            Energy.FillEnergy();
         }
 
         public void TakeDamage(IDamager damager)
