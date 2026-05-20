@@ -35,18 +35,11 @@ namespace OneM.DamageSystem
         public void Disable() => SetEnable(false);
         public void SetEnable(bool isEnabled) => gameObject.SetActive(isEnabled);
 
-        public bool TryInflictDamage(IDamageable damageable)
-        {
-            var wasDamageInflicted = damageable.TryTakeDamage(this);
-            if (wasDamageInflicted)
-            {
-                OnDamageInflicted?.Invoke(damageable);
-                if (DisableAfterInflictDamage) gameObject.SetActive(false);
-            }
-            return wasDamageInflicted;
-        }
-
-        private void TryInflictNearbyDamage()
+        /// <summary>
+        /// Gets the first damageable instance within the Collider area. 
+        /// </summary>
+        /// <returns>An IDamageable instance if found, otherwise null.</returns>
+        public IDamageable GetDamageable()
         {
             var bounds = Collider.bounds;
             var hits = Physics.OverlapBoxNonAlloc(
@@ -60,8 +53,27 @@ namespace OneM.DamageSystem
             for (var i = 0; i < hits; i++)
             {
                 var hasDamageable = buffer[i].TryGetComponent(out IDamageable damageable);
-                if (hasDamageable) TryInflictDamage(damageable);
+                if (hasDamageable) return damageable;
             }
+
+            return null;
+        }
+
+        public bool TryInflictDamage(IDamageable damageable)
+        {
+            var wasDamageInflicted = damageable.TryTakeDamage(this);
+            if (wasDamageInflicted)
+            {
+                OnDamageInflicted?.Invoke(damageable);
+                if (DisableAfterInflictDamage) gameObject.SetActive(false);
+            }
+            return wasDamageInflicted;
+        }
+
+        private void TryInflictNearbyDamage()
+        {
+            var damageable = GetDamageable();
+            if (damageable != null) TryInflictDamage(damageable);
         }
     }
 }
