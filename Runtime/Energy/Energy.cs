@@ -80,6 +80,7 @@ namespace OneM.DamageSystem
         private void Start() => FillEnergy();
         private void OnValidate() => ValidateFields();
 
+        public bool HasAny() => Current > 0f;
         public bool IsFull() => Current > Max || Mathf.Approximately(Current, Max);
         public bool IsEmpty() => Current < 0f || Mathf.Approximately(Current, 0f);
 

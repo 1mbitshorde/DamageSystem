@@ -35,11 +35,9 @@ namespace OneM.DamageSystem
         public void Disable() => SetEnable(false);
         public void SetEnable(bool isEnabled) => gameObject.SetActive(isEnabled);
 
-        /// <summary>
-        /// Gets the first damageable instance within the Collider area. 
-        /// </summary>
-        /// <returns>An IDamageable instance if found, otherwise null.</returns>
-        public IDamageable GetDamageable()
+        public IDamageable GetDamageable() => GetCollidingComponent<IDamageable>();
+
+        public T GetCollidingComponent<T>() where T : class
         {
             var bounds = Collider.bounds;
             var hits = Physics.OverlapBoxNonAlloc(
@@ -52,8 +50,8 @@ namespace OneM.DamageSystem
 
             for (var i = 0; i < hits; i++)
             {
-                var hasDamageable = buffer[i].TryGetComponent(out IDamageable damageable);
-                if (hasDamageable) return damageable;
+                var hasComponent = buffer[i].TryGetComponent(out T component);
+                if (hasComponent) return component;
             }
 
             return null;
