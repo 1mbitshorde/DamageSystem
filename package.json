@@ -1,7 +1,7 @@
 {
   "name": "com.1mbitshorde.damage-system",
   "displayName": "1M Bits Horde-Damage System",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "unity": "6000.3",
   "description": "Damage System scripts used for gameplay.",
   "keywords": [
@@ -16,6 +16,6 @@
   "documentationUrl": "https://github.com/1mbitshorde/DamageSystem#readme",
   "changelogUrl": "https://github.com/1mbitshorde/DamageSystem/CHANGELOG.md",
   "dependencies": {
-    "com.1mbitshorde.attributes": "4.1.1"
+    "com.1mbitshorde.attributes": "4.2.0"
   }
 }
