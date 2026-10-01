@@ -1,6 +1,6 @@
+using OneM.Attributes;
 using System;
 using UnityEngine;
-using OneM.Attributes;
 
 namespace OneM.DamageSystem
 {
@@ -59,9 +59,9 @@ namespace OneM.DamageSystem
         public float Current
         {
             get => current;
-            private set
+            set
             {
-                current = value;
+                SetWithoutNotify(value);
                 if (IsEmpty())
                 {
                     current = 0f;
@@ -123,6 +123,12 @@ namespace OneM.DamageSystem
         /// Removes the max energy amount.
         /// </summary>
         public void RemoveAll() => Remove(Max);
+
+        /// <summary>
+        /// Sets the current energy without firing any events.
+        /// </summary>
+        /// <param name="value">The energy value to set.</param>
+        public void SetWithoutNotify(float value) => current = Mathf.Clamp(value, Initial, Max);
 
         private void ValidateFields()
         {
