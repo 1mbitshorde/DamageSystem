@@ -128,7 +128,7 @@ namespace OneM.DamageSystem
         /// Sets the current energy without firing any events.
         /// </summary>
         /// <param name="value">The energy value to set.</param>
-        public void SetWithoutNotify(float value) => current = Mathf.Clamp(value, Initial, Max);
+        public void SetWithoutNotify(float value) => current = value;
 
         private void ValidateFields()
         {
