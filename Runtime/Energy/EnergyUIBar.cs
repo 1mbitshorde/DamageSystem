@@ -41,8 +41,8 @@ namespace OneM.DamageSystem
 
         private void Reset() => Setup();
         private void Awake() => InitializeSlider();
-        private void OnEnable() => SubscribeEvents();
-        private void OnDisable() => UnsubscribeEvents();
+        private void Start() => SubscribeEvents();
+        private void OnDestroy() => UnsubscribeEvents();
         private void OnDrawGizmos() => SetSliderValue(slider.value);
 
         private void SubscribeEvents()
