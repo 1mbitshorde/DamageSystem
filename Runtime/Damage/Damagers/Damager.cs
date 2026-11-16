@@ -39,16 +39,13 @@ namespace OneM.DamageSystem
         public bool TryInflictDamage(IDamageable damageable)
         {
             var wasDamageInflicted = damageable.TryTakeDamage(this);
-            if (wasDamageInflicted)
-            {
-                OnDamageInflicted?.Invoke(damageable);
-                if (DisableAfterInflictDamage) gameObject.SetActive(false);
-            }
+            if (wasDamageInflicted) OnDamageInflicted?.Invoke(damageable);
             return wasDamageInflicted;
         }
 
         private void TryInflictNearbyDamage()
         {
+            var wasAnyDamageInflicted = false;
             var bounds = Collider.bounds;
             var hits = Physics.OverlapBoxNonAlloc(
                 bounds.center,
@@ -61,8 +58,9 @@ namespace OneM.DamageSystem
             for (var i = 0; i < hits; i++)
             {
                 var hasDamageable = buffer[i].TryGetComponent(out IDamageable damageable);
-                if (hasDamageable) TryInflictDamage(damageable);
+                if (hasDamageable) wasAnyDamageInflicted |= TryInflictDamage(damageable);
             }
+            if (wasAnyDamageInflicted) enabled = !DisableAfterInflictDamage;
         }
     }
 }
