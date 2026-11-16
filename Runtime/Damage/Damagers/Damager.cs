@@ -26,7 +26,8 @@ namespace OneM.DamageSystem
             set => currentAmount = Mathf.Max(value, 0f);
         }
 
-        private readonly Collider[] buffer = new Collider[10];
+        private const uint MAX_COLLISIONS = 10;
+        private readonly Collider[] buffer = new Collider[MAX_COLLISIONS];
 
         private void Reset() => Collider = GetComponent<Collider>();
         private void FixedUpdate() => TryInflictNearbyDamage();
@@ -34,28 +35,6 @@ namespace OneM.DamageSystem
         public void Enable() => SetEnable(true);
         public void Disable() => SetEnable(false);
         public void SetEnable(bool isEnabled) => gameObject.SetActive(isEnabled);
-
-        public IDamageable GetDamageable() => GetCollidingComponent<IDamageable>();
-
-        public T GetCollidingComponent<T>() where T : class
-        {
-            var bounds = Collider.bounds;
-            var hits = Physics.OverlapBoxNonAlloc(
-                bounds.center,
-                bounds.size * 0.5F,
-                buffer,
-                transform.rotation,
-                Layers
-            );
-
-            for (var i = 0; i < hits; i++)
-            {
-                var hasComponent = buffer[i].TryGetComponent(out T component);
-                if (hasComponent) return component;
-            }
-
-            return null;
-        }
 
         public bool TryInflictDamage(IDamageable damageable)
         {
@@ -70,8 +49,20 @@ namespace OneM.DamageSystem
 
         private void TryInflictNearbyDamage()
         {
-            var damageable = GetDamageable();
-            if (damageable != null) TryInflictDamage(damageable);
+            var bounds = Collider.bounds;
+            var hits = Physics.OverlapBoxNonAlloc(
+                bounds.center,
+                bounds.size * 0.5F,
+                buffer,
+                transform.rotation,
+                Layers
+            );
+
+            for (var i = 0; i < hits; i++)
+            {
+                var hasDamageable = buffer[i].TryGetComponent(out IDamageable damageable);
+                if (hasDamageable) TryInflictDamage(damageable);
+            }
         }
     }
 }
